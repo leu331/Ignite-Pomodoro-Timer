@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Pomodoro Timer Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto de *timer* Pomodoro, desenvolvido com React para ajudar os usuários a gerenciar melhor seu tempo e aumentar a produtividade. O método Pomodoro utiliza ciclos de trabalho focado seguidos por intervalos de descanso, promovendo maior eficiência.
 
-Currently, two official plugins are available:
+https://github.com/user-attachments/assets/59dc7487-0f99-471d-8443-58fcffa07c87
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funcionalidades
 
-## Expanding the ESLint configuration
+- **Sessões de Trabalho e Descanso**: Alternância entre períodos de trabalho (25 minutos) e intervalos curtos de descanso (5 minutos), com um intervalo longo (15-30 minutos) após 4 sessões de trabalho.
+- **Controle Total do Timer**: Inicie ou reinicie os ciclos de trabalho e descanso.
+- **Notificações**: Alertas sonoros ou visuais quando a sessão de trabalho ou descanso termina.
+- **Personalização**: Ajuste a duração das sessões conforme a preferência do usuário.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tecnologias Utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: Para a criação da interface do usuário.
+- **React Router**: Para navegação entre diferentes páginas ou seções da aplicação.
+- **Context API e Reducers**: Gerenciamento eficiente do estado da aplicação.
+- **Styled Components**: Para a estilização dinâmica e modular do projeto.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Funcionalidades Futuras
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Adicionar a funcionalidade de **pausar o timer**.
+- Adicionar a funcionalidade de **trocar de tema**.
+- Criar uma página **404 Not Found**.
+- Melhorias no design e na experiência do usuário.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Como Rodar o Projeto
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone este repositório:
+   ```bash
+     git clone https://github.com/seu-usuario/pomodoro-timer.git
+
+2. Instale as dependências:
+   ```bash
+   npm install
+
+3. Inicie o servidor:
+   ```bash
+   npm run dev
+
+  ## Contribuições
+Sinta-se à vontade para contribuir com melhorias, correções ou novas funcionalidades. Abra issues ou pull requests para sugestões!
