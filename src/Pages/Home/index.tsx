@@ -26,33 +26,28 @@ export interface Cycle {
     finishedDate?: Date
 }
 
-
 const schema = zod.object ({
     task: zod.string().min(1, "Informe a tarefa."),
     minutesForTask: zod.number().min(1, "O ciclo precisa ser de, no mínimo, 5 minutos").max(120, "O ciclo precisa ser de, no máximo, 120 minutos")
 })
 
 
-
-
 export function Home () {
     const {createNewCycle, handleStopCycle, activeCycle, activeCycleId} = useContext(CyclesContext)
-
 
     function handleCreateNewCycle (data: FormData) {
         createNewCycle(data)
         reset()
     }
    
-    
        const newCycleForm = useForm<FormData>({
-                defaultValues: {
-                    task: "",
-                    minutesForTask: 0
-                },
-        
-                resolver: zodResolver(schema)
-                
+            defaultValues: {
+                task: "",
+                minutesForTask: 0
+            },
+    
+            resolver: zodResolver(schema)
+            
             })
 
     const {handleSubmit, watch, reset} = newCycleForm
@@ -68,21 +63,19 @@ export function Home () {
     return (
         <HomeContainer>
             <form onSubmit={handleSubmit(handleCreateNewCycle)}>
-
+                <FormProvider {...newCycleForm}>
+                    <NewCycleForm/>
+                </FormProvider>
                 
-                    <FormProvider {...newCycleForm}>
-                        <NewCycleForm/>
-                    </FormProvider>
-                    
-                     {activeCycle ? (
-                    <div id="taskActive"><p>{`Tarefa atual: ${activeCycle.task}`}</p></div>
-                    ) : (
-                    <div>
-                         <div id="taskInActive"><p></p></div>
-                    </div>
-                    )}
-                    
-                    <Cowntdown/>
+                    {activeCycle ? (
+                <div id="taskActive"><p>{`Tarefa atual: ${activeCycle.task}`}</p></div>
+                ) : (
+                <div>
+                        <div id="taskInactive"><p></p></div>
+                </div>
+                )}
+                
+                <Cowntdown/>
 
                 {activeCycle ? (
                     <CloseDownContainer onClick={handleStopCycle} type="button">

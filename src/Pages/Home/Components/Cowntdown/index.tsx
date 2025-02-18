@@ -8,7 +8,6 @@ import { CyclesContext } from '../../Context/CyclesContext'
 export function Cowntdown () {
     const {activeCycle, activeCycleId, markCycleAsFinished, amountSecondsPassed, setSecondsPassed} = useContext(CyclesContext)
 
-    
     const totalSeconds = activeCycle ? activeCycle.minutesForTask * 60 : 0
 
     const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
@@ -25,30 +24,32 @@ export function Cowntdown () {
         }
 
         else{document.title = "Ignite Timer"}
-            
-        
+                
     }, [minutes, seconds, activeCycle])
 
 
     useEffect(() => {
-                let interval: number
-                if(activeCycle){
-                    interval = setInterval(()=> {
-                        const secondsDifference = differenceInSeconds(new Date(),  activeCycle.startDate)
-        
-                        if (secondsDifference >= totalSeconds) {
+        let interval: number
+        if(activeCycle){
+            interval = setInterval(()=> {
+                const secondsDifference = differenceInSeconds(
+                    new Date(), 
+                    new Date(activeCycle.startDate)
+                )
 
-                        markCycleAsFinished()
-                        setSecondsPassed(totalSeconds)     
-                
-                        }
-                        else {
-                            setSecondsPassed(secondsDifference)
-                        }         
-                    }, 1000)
-                            return () =>  clearInterval(interval)
+                if (secondsDifference >= totalSeconds) {
+
+                markCycleAsFinished()
+                setSecondsPassed(totalSeconds)     
+        
                 }
-            }, [activeCycle, totalSeconds, activeCycleId])
+                else {
+                    setSecondsPassed(secondsDifference)
+                }         
+            }, 1000)
+                    return () =>  clearInterval(interval)
+        }
+    }, [activeCycle, totalSeconds, activeCycleId])
 
     return (
         <CountDownContainer >
